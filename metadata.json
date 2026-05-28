@@ -1,0 +1,6 @@
+{
+  "name": "Adharchand Higher Secondary School",
+  "description": "Excellence in Education Since 1940. A premier institution for Grades 6-12.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

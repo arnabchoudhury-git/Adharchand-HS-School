@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper: Auth check
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Helper: Admin check
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        (request.auth.token != null && 'email' in request.auth.token && (
+          request.auth.token.email.endsWith('@adharchand.edu') ||
+          request.auth.token.email == 'admin@adharchand.edu' ||
+          request.auth.token.email == 'choudhuryarnab919@gmail.com'
+        ))
+      );
+    }
+
+    // Publicly readable system settings, writable by admin only
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn() && request.auth.uid == userId;
+      allow write: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    match /admissions/{admissionId} {
+      // Only admins can read all applications
+      allow read: if isAdmin();
+      
+      // Anyone signed in can create an application
+      allow create: if isSignedIn();
+      
+      // Only admins can update status or delete
+      allow update, delete: if isAdmin();
+    }
+  }
+}
