@@ -55,6 +55,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto border-t border-white/10 mt-12 pt-8 flex flex-col md:row justify-between items-center gap-4 text-[10px] uppercase tracking-widest opacity-40">
         <p>© {currentYear} Adharchand Higher Secondary School. All Rights Reserved.</p>
         <p>Managed by Adharchand Educational Trust</p>
+        <p className="normal-case tracking-normal text-[11px] font-medium opacity-85 mt-1">Developed with ❤️ by Arnab Roy Choudhury.</p>
       </div>
     </footer>
   );

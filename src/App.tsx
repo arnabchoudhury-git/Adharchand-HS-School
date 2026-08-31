@@ -10,6 +10,7 @@ import Faculty from './pages/Faculty';
 import Calendar from './pages/Calendar';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import StudentPortal from './pages/StudentPortal';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/student-portal" element={<StudentPortal />} />
             </Routes>
           </AnimatePresence>
         </main>

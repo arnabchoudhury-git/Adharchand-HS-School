@@ -47,7 +47,7 @@ export default function Login() {
       if (isActuallyAdmin) {
         navigate('/dashboard');
       } else {
-        navigate('/'); 
+        navigate('/student-portal'); 
       }
     }
   }, [user, isAdmin, navigate, selectedType]);

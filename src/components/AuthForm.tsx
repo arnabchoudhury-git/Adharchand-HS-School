@@ -192,15 +192,18 @@ export default function AuthForm({ isAdminMode = false }: { isAdminMode?: boolea
             >
               {!isLogin && (
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-[#1E3A8A] uppercase tracking-widest">Full Name</label>
+                  <label className="text-[10px] font-bold text-[#1E3A8A] uppercase tracking-widest flex items-center justify-between">
+                    <span>Full Name</span>
+                    <span className="text-[9px] text-[#B45309] font-mono">AUTO CAPITALIZED</span>
+                  </label>
                   <div className="relative">
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <input 
                       type="text" 
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full pl-12 pr-4 py-4 bg-gray-50 border-2 border-gray-100 focus:border-[#1E3A8A] outline-none transition-all font-bold text-sm"
-                      placeholder="John Doe"
+                      onChange={(e) => setName(e.target.value.toUpperCase())}
+                      className="w-full pl-12 pr-4 py-4 bg-gray-50 border-2 border-gray-100 focus:border-[#1E3A8A] outline-none transition-all font-bold text-sm uppercase placeholder:normal-case placeholder:font-normal"
+                      placeholder="ENTER FULL NAME IN CAPITAL LETTERS"
                       required={!isLogin}
                     />
                   </div>

@@ -35,6 +35,7 @@ export default function Navbar() {
     { name: 'CALENDAR', path: '/calendar' },
     { name: 'FACULTY', path: '/faculty' },
     ...(isAdmin ? [{ name: 'DASHBOARD', path: '/dashboard' }] : []),
+    ...(user && !isAdmin ? [{ name: 'STUDENT PORTAL', path: '/student-portal' }] : []),
     ...(user ? [
       { name: 'SIGN OUT', path: '#signout', onClick: handleLogout }
     ] : [

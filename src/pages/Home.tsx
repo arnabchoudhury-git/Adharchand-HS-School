@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Users, Trophy, Bell, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { db } from '../lib/firebase';
 import { doc, onSnapshot } from 'firebase/firestore';
+import { handleFirestoreError, OperationType } from '../lib/firebase-errors';
 
 export default function Home() {
   const [admissionsOpen, setAdmissionsOpen] = useState<boolean | null>(null);
@@ -19,6 +20,7 @@ export default function Home() {
     }, (error) => {
       console.error("Error fetching settings:", error);
       setAdmissionsOpen(true);
+      handleFirestoreError(error, OperationType.GET, 'settings/admissions');
     });
     return () => unsubscribe();
   }, []);
